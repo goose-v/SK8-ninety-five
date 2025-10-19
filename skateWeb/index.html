@@ -1,0 +1,861 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Sedgwick+Ave&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+    <title>::: SK8 TAPE 96 :::</title>
+    
+    <style>
+        /* 90s Content Colors for high contrast and saturation */
+        :root {
+            --color-background: #008080; /* Teal/Aqua - 90s Background */
+            --color-primary: #FF00FF; /* High Saturation Magenta/Fuchsia */
+            --color-secondary: #FFFF00; /* High Saturation Yellow */
+            --color-text: #000000; /* Black for high contrast */
+            --color-link: #0000EE;
+            --color-visited: #551A8B;
+            --color-active: #FF0000;
+            --color-border: #000000;
+            
+            /* Early Facebook Header Colors */
+            --fb-blue: #3b5998; /* The classic Facebook blue */
+            --fb-text: #FFFFFF;
+        }
+        ::-webkit-scrollbar {
+          display: none; /* Chrome, Safari, Edge */
+        }
+        /* ///////////////////////////////////////////////////////////
+           // KEY CHANGE: CSS RESET for edge-to-edge content      //
+           /////////////////////////////////////////////////////////// 
+        */
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%; /* Ensures 100% width on all devices */
+        }
+        body{
+          margin: 20px auto;
+          background-color: #000000;
+          background-image: url('frame.png');
+          background-repeat: no-repeat;
+          background-position: center center; 
+          background-size: 1200px 1000px;
+          -ms-overflow-style: none;  /* IE and old Edge */
+          scrollbar-width: none;
+        }
+        .tv-screen-container {
+            margin: 55px auto; 
+            max-width: 890px;
+            height: 680px; 
+            background-color: #000000; /* Use black as a good fall-back color for a dark GIF */
+            background-image: url('https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcDl1cXE2cmo4NHBoMnZwZnd4Z2Zwd3V4NXpoem0wajNldmdmeWxicCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/9ZsHm0z5QwSYpV7g01/giphy.gif');
+
+            /* Crucial: Scales the image to cover the entire viewport */
+            background-size: cover; 
+            
+            border: 3px solid #222222;
+            border-radius: 40px;
+            outline: 35px solid #222222;
+            outline-offset: -5px;
+            /* Crucial: Prevents the image from tiling */
+            background-repeat: no-repeat; 
+            
+            /* Centers the image within the viewport */
+            background-position: center center; 
+            
+            /* Keeps the GIF fixed in place while content scrolls */
+            background-attachment: fixed;
+            /* Bezel Styling */
+            overflow: hidden;
+            /* MODIFIED: Increased border-radius for more pronounced curve */ 
+            box-shadow: 
+                0 0 50px rgba(0, 0, 0, 0.9), 
+                /* MODIFIED: Stronger inner shadow to simulate more screen curvature */
+                inset 0 0 40px rgba(0, 0, 0, 0.9);     
+            overflow: hidden; 
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .page-wrapper {
+            padding: 0px; 
+            padding-top: 0;
+            flex-grow: 1; 
+            overflow-y: auto; 
+            /* Subtle inner shadow to enhance the curved screen effect */
+            box-shadow: inset 0 0 20px white;
+            
+            /* Increased border-radius to match the new container curvature */
+            border-radius: 40px; 
+            
+            /* NEW: Slightly inverse skew on the content to make it appear flat *inside* the skewed monitor */
+            transform: rotateY(2deg) rotateX(-2deg); 
+        }
+        /* ------------------------------------------------ */
+        /* MODIFIED HEADER: Full Width and Bold */
+        /* ------------------------------------------------ */
+        .main-header {
+          background-color: #00ebb8; 
+          /* Use a light/neon shadow to define the edge against the dark body */
+          box-shadow: 0.01px 5px 20px #00ebb8;  
+          padding-top: 10px;
+          margin-top: 0px;
+        }
+
+        .main-header h1 {
+            color: var(--color-secondary); /* Yellow text */
+            text-shadow:
+              -1px -6px 0 black, /* Top-left shadow */
+              -4px -3px 0 black, /* Top-right shadow */
+              -1px 0.3px 0 black;
+            margin: 0;
+            font-size: 5em;
+            font-family: 'Sedgwick Ave';
+            font-weight: 900;
+            padding-left: 10px;
+            
+            /* Creates a bold, outlined, or 'glowing' effect */
+        }
+
+        .main-header nav {
+            text-align: right;
+            /* Flex-shrink prevents the nav from being squeezed out by the large H1 */
+            flex-shrink: 0; 
+            margin: 2;
+            margin-top: -10;
+        }
+
+        .nav-link {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--fb-text);
+            padding: 8px 12px; /* Increased padding for bold look */
+            margin: 0 3px;
+            border: none;
+            border-bottom: 3px solid transparent;
+            text-decoration: none;
+            font-weight: 900; /* Extra bold text */
+            font-size: 1.0em;
+            cursor: pointer;
+            transition: border-bottom 0.2s;
+        }
+
+        .nav-link:hover {
+            background-color: rgba(206, 123, 123, 0.2); 
+            border-style: none;
+        }
+        
+        .nav-link.active {
+            border-bottom: 3px solid var(--color-primary); /* Magenta line under active link */
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        .login-btn {
+            background-color: transparent;
+            border: 2px solid var(--color-secondary); /* Yellow border for the login button */
+            padding: 6px 10px;
+        }
+        /* ------------------------------------------------ */
+        /* END MODIFIED HEADER STYLE */
+        /* ------------------------------------------------ */
+
+
+        /* Remaining 90s Content Styling */
+        .content-box {
+            background-color: #FFFFFF;
+            border: 5px solid var(--color-border);
+            padding: 20px;
+            /* Margins now applied to the wrapper, so content box can use auto margin */
+            margin: 30 auto 40px auto; 
+            max-width: 700px;
+            box-shadow: -8px -8px 0 var(--color-border);
+            line-height: 1.5;
+            min-height: 400px;
+            display: none; 
+        }
+
+        .content-box.active {
+            display: block;
+        }
+        
+        .section-title {
+            color: var(--color-primary);
+            background-color: var(--color-text);
+            padding: 5px;
+            text-align: center;
+            font-size: 1.8em;
+            border: 2px dashed var(--color-secondary);
+        }
+        @keyframes scroll-left {
+            from {
+                /* Start position: Shows the first copy of the text */
+                transform: translateX(0); 
+            }
+            to {
+                /* End position: Moves left by exactly 50% of the content's total width (which is one full copy + the gap) */
+                transform: translateX(-50%); 
+            }
+        }
+
+        .marquee-wrapper {
+            background-color: var(--secondary-color); 
+            color: var(--border-color); 
+            font-weight: bold;
+            padding: 0px 0;
+            margin: 6px 0;
+            border: 1px solid var(--border-color);
+            
+            /* CRITICAL: Hides the content outside the box */
+            overflow: hidden; 
+            white-space: nowrap; 
+            box-sizing: border-box; 
+            width: 100%;
+        }
+
+        .marquee-content {
+            /* Set the display property to inline-flex to calculate the width of both copies */
+            display: inline-flex; 
+            background-color: var(--color-secondary);
+            color: var(--color-text);
+            font-weight: bold;
+            padding: 5px 0;
+            margin: 0px 0;
+            border: 1px solid var(--color-border);
+            white-space: nowrap; 
+            overflow: hidden; 
+            
+            /* Ensure the marquee is not clipped by its parent elements */
+            /* Apply the continuous scroll animation */
+            /* NOTE: You may need to adjust the 15s to make it smooth */
+            animation: scroll-left 35s linear infinite; 
+        }
+
+        /* New element for 20px spacing between the two text instances */
+        .spacer-gap {
+            display: block;
+            min-width: 50px; /* Provides the requested 20px spacing */
+            height: 1px; /* Minimal height */
+        }
+
+        a {
+            color: var(--color-link);
+            text-decoration: underline;
+            font-weight: bold;
+        }
+
+        a:visited {
+            color: var(--color-visited);
+        }
+
+        .icon-section {
+            text-align: center;
+            margin-top: 20px;
+            border-top: 3px solid var(--color-border);
+            padding-top: 15px;
+        }
+        .gif-overlay-container {
+          position: absolute; /* Change from relative to absolute */
+          top: 0;
+          left: 0;
+          width: 0%; /* Spans the full width of the parent TV container */
+          height: 0%; /* Spans the full height of the parent TV container */
+          pointer-events: none; /* Allows clicks to pass through to the content below */
+          z-index: 0; /* Keep it on top of the content */
+        }
+
+        .overlay-gif {
+            /* Base styles for both GIFs */
+            position: absolute; 
+            z-index: 10;     
+            width: 130px;  /* Base size */
+            height: auto; 
+            border: 3px solid var(--primary-color); 
+            box-shadow: 0 0 10px rgba(0, 255, 216, 0.8);
+            
+            /* TOP RIGHT POSITION (Default for .overlay-gif) */
+            top: 150px;       
+            left: 20px;       
+        }
+
+        .overlay-gif-bottom {
+            /* NEW: Overrides the top/left to position the second GIF in the bottom right */
+            top: 540px;      
+            left: 725px; 
+            transform: scaleX(-1);
+            /* Optional: Make it a different size */
+            width: 130px;
+        }
+        .icon-gif {
+            /* border: 2px solid var(--color-primary); */
+            margin: 0 10px;
+            width: 100px
+            
+        }
+
+        .trick-table {
+            width: 100%;    
+            border: 5px solid var(--color-text);
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.9em;
+        }
+
+        .trick-table th, .trick-table td {
+            border: 2px solid var(--color-text);
+            padding: 8px;
+            text-align: left;
+        }
+
+        .trick-table th {
+            background-color: #00FF00;
+            color: var(--color-text);
+            font-family: Oswald;
+            text-transform: uppercase;
+        }
+        
+        .trick-table tr:nth-child(even) {
+            background-color: #CCCCCC;
+        }
+
+        .main-footer {
+            text-align: center;
+            color: var(--color-secondary);
+            font-size: 0.8em;
+            padding: 10px;
+            border-top: 3px double var(--color-secondary);
+            text-shadow: 1px 1px 0 var(--color-border);
+        }
+
+        .powered-banner {
+            display: block;
+            margin: 10px auto 0;
+            border: none;
+        }
+
+        .blink {
+            animation: blinker 1s linear infinite;
+            color: var(--color-active);
+            font-weight: bold;
+        }
+        
+        @keyframes blinker {
+            50% {
+                opacity: 0;
+            }
+        }
+        /* ============================================= */
+        /* LOGIN FORM STYLES */
+        /* ============================================= */
+        #login-container {
+            padding: 20px;
+            max-width: 400px;
+            margin: 20px auto;
+            border: 3px double var(--secondary-color); /* Double yellow border */
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left; /* Align labels left within the centered form */
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: var(--border-color); /* Black text */
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 2px solid var(--border-color);
+            background-color: #EEEEEE; /* Light background for input */
+            font-family: monospace; /* Retro terminal font for inputs */
+        }
+
+        .login-submit-btn {
+            padding: 10px 20px;
+            background-color: var(--primary-color); /* Neon Aqua button */
+            color: var(--border-color);
+            border: 2px solid var(--border-color);
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 3px 3px 0 var(--border-color); /* 3D button effect */
+            transition: box-shadow 0.1s;
+            margin-top: 10px;
+        }
+
+        .login-submit-btn:active {
+            box-shadow: 1px 1px 0 var(--border-color); /* Button press effect */
+            transform: translate(2px, 2px);
+        }
+
+        .login-message {
+            margin-top: 20px;
+            font-weight: bold;
+            color: var(--active-color); /* Red for error/success messages */
+        }
+        #webcam-feed {
+            transform: scaleX(-1); /* Flips the video feed horizontally for a mirror effect */
+            box-shadow: 0 0 10px rgba(0, 255, 216, 0.8);
+        }
+    </style>
+</head>
+<body>
+  <div class="tv-screen-container">
+    <div class="page-wrapper">
+
+      <header class="main-header">
+          <h1>SK8 ninety-five</h1>
+          <nav>
+              <a href="#" class="nav-link active" data-page="home">HOME</a>
+              <a href="#" class="nav-link" data-page="community">COMMUNITY</a> 
+              <a href="#" class="nav-link" data-page="film">FILM</a>
+              <a href="#" class="nav-link" data-page="join">JOIN</a> 
+              <a href="#" class="nav-link login-btn" data-page="login">LOGIN</a>
+          </nav>
+      </header>
+
+      <div id="gif-overlay-set" class="gif-overlay-container">
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXZ5dmV4bTg0ZDc3c2ZiM255ZzVpYnA5Y21qNHJmYmJyM3dodXcxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WtOkaikiwaR87ZvAFH/giphy.gif" 
+             alt="Animated Skateboard GIF" 
+             class="overlay-gif">
+
+        <img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExeXZ5dmV4bTg0ZDc3c2ZiM255ZzVpYnA5Y21qNHJmYmJyM3dodXcxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/WtOkaikiwaR87ZvAFH/giphy.gif"
+             alt="Bottom 90s GIF"
+             class="overlay-gif overlay-gif-bottom">
+      </div>
+
+      <main id="page-home" class="content-box active">
+              <h2 class="section-title">WELCOME TO THE TAPE DECK!</h2>
+              <div class="marquee-wrapper">
+                <span class="marquee-content">
+                    &gt; GET YOUR TRICK RECORDED. UPLOAD NOW! &gt; LATEST COMMUNITY POSTS ARE LIVE 
+                    <span class="spacer-gap"></span>
+                    &gt; GET YOUR TRICK RECORDED. UPLOAD NOW! &gt; LATEST COMMUNITY POSTS ARE LIVE
+              </div>
+              <p style="text-align:center">
+                  You've landed on <strong>SK8 ninety-five</strong>, the official '90s style skateboard recording web! 
+                  This is the spot where you archive your best grinds, flips, and manuals. 
+                  Let's keep the <strong>VCR-era vibe</strong> alive.
+              </p>
+              <p style="text-align:center; font-size:1.2em">
+                  Hit the <Strong>COMMUNITY</Strong> link to browse other skaters' cool tricks. 
+              </p>
+              <p style="text-align:center; font-size:1.2em">    
+                  If you'd like to show off your tricks, drop into the <Strong>FILM</Strong> section
+                </p>
+              <div class="icon-section">
+                  <img src="https://thumbs.dreamstime.com/b/skater-smilie-1-844889.jpg" alt="Check it out icon" class="icon-gif">
+                  <img src="https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3YXY5b3Y5OTV3cnBlbjF6aDN0MmpkbW8wa3B0a3IzYW94NTZ1eGthNyZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/H62OwuuAXqEdKbwHpJ/giphy.gif" alt="90s Floppy Disk Icon" class="icon-gif">
+                  <img src="https://thumbs.dreamstime.com/b/skater-smilie-1-844889.jpg" alt="Check it out icon" class="icon-gif"style="transform: scaleX(-1);">
+              </div>
+        </main>
+    
+          <main id="page-community" class="content-box">
+              <h2 class="section-title">COMMUNITY POSTS // COOL TRICK ARCHIVES</h2>
+              <p style="text-align: center;">
+                Browse the latest tapes uploaded by skaters across the TAMU!
+              <p style="text-align: center;">
+                Got your own footage? Use the <strong>Post Trick</strong> link below to submit!
+              </p>
+              <table class="trick-table">
+                  <thead>
+                      <tr>
+                          <th>Trick</th>
+                          <th>Skater</th>
+                          <th>Date</th>
+                          <th>Video Link</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr>
+                          <td> <strong>MEGA</strong> Backside 50-50 on the school rail!</td>
+                          <td>SK8BOY77</td>
+                          <td>09-12-96</td>
+                          <td><a href="#">View Tape</a></td>
+                      </tr>
+                      <tr>
+                          <td>Heel Flip... first try?!?!?</td>
+                          <td>RADGIR96</td>
+                          <td>09-10-96</td>
+                          <td><a href="#">View Tape</a></td>
+                      </tr>
+                      <tr>
+                          <td>Manual to Nollie Shuvit Line</td>
+                          <td>CHILL_DUDE</td>
+                          <td>09-08-96</td>
+                          <td><a href="#">View Tape</a></td>
+                      </tr>
+                      <tr>
+                          <td>Frontside Flip - The worst film angle</td>
+                          <td>TAPE_FAIL</td>
+                          <td>09-05-96</td>
+                          <td><a href="#">View Tape</a></td>
+                      </tr>
+                  </tbody>
+              </table>
+              
+              <p style="text-align: center; margin-top: 20px;">
+                  <a href="#" class="nav-link" style="color:#000000; background-color: var(--color-primary); border: 3px outset var(--color-border);">Post Trick!</a> 
+              </p>
+          </main>
+
+          <main id="page-film" class="content-box">
+            <h2 class="section-title">FILM YOUR TAPE!</h2>
+            <p>Record a short clip from your webcam, apply the retro filter, and download your tape.</p>
+
+            <div id="camera-interface" style="display: flex; flex-direction: column; align-items: center; padding: 10px;">
+                
+                <video id="webcam-feed" autoplay style="width: 100%; max-width: 400px; border: 4px solid var(--border-color);"></video>
+                <canvas id="video-canvas" style="display: none;"></canvas>
+
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    <button id="start-record-btn" class="login-submit-btn" style="background-color: var(--active-color);">START RECORD</button>
+                    <button id="stop-record-btn" class="login-submit-btn" disabled style="background-color: gray;">STOP & PROCESS</button>
+                </div>
+
+                <p id="camera-message" class="login-message" style="margin-top: 20px;"></p>
+                <div id="download-area-live" style="margin-top: 20px; display: none;">
+                    <p style="font-weight: bold; color: green;">Filter Complete!</p>
+                    <a id="download-link-live" href="#" class="login-submit-btn" style="text-decoration: none; display: inline-block;">
+                        DOWNLOAD FILTERED TAPE
+                    </a>
+                </div>
+            </div>
+        </main>
+
+          <main id="page-login" class="content-box">
+              <h2 class="section-title">LOG IN</h2>
+              
+              <div id="login-container">
+                  <form id="login-form">
+                      <div class="form-group">
+                          <label for="username">USERNAME:</label>
+                          <input type="text" id="username" name="username" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="password">PASSWORD:</label>
+                          <input type="password" id="password" name="password" required>
+                      </div>
+                      <button type="submit" class="login-submit-btn">ACCESS TAPE DECK</button>
+                  </form>
+                  <p id="login-message" class="login-message"></p>
+                  <p style="margin-top: 25px;">
+                      Not a member yet? 
+                      <a href="#" class="nav-link" data-page="join" style="color: var(--primary-color); font-weight: bold; text-decoration: none;">
+                          JOIN THE COMMUNITY!
+                      </a>
+                  </p>
+              </div>
+              
+          </main>
+          <main id="page-join" class="content-box"> 
+            <h2 class="section-title">CREATE YOUR SK8 ACCOUNT!</h2>
+              <p>Sign up now to share your sickest tapes!</p>
+              
+              <div id="register-container">
+                  <form id="register-form">
+                      <div class="form-group">
+                          <label for="reg-username">CHOOSE USERNAME:</label>
+                          <input type="text" id="reg-username" name="username" required>
+                      </div>
+                      <div class="form-group">
+                          <label for="reg-password">CREATE PASSWORD:</label>
+                          <input type="password" id="reg-password" name="password" required>
+                      </div>
+                      <button type="submit" class="login-submit-btn">CREATE SK8 ACCOUNT</button>
+                  </form>
+                  <p id="register-message" class="login-message"></p>
+              </div>
+              
+          </main>
+          <footer class="main-footer">
+              <p>&copy; 2025 SK8 ninety-five. All rights reserved. <span class="blink">🌐</span> Best viewed in 800x600 resolution.</p>
+          </footer>
+      </div>
+    </div> 
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('.nav-link, .nav-link-inline');
+        const contentBoxes = document.querySelectorAll('.content-box');
+        const gifContainer = document.getElementById('gif-overlay-set');
+        
+        // Form Elements
+        const loginForm = document.getElementById('login-form');
+        const loginMessage = document.getElementById('login-message');
+        const registerForm = document.getElementById('register-form');
+        const registerMessage = document.getElementById('register-message');
+
+        // Add this logic inside your document.addEventListener('DOMContentLoaded', ...) function
+        // alongside the login/register handlers.
+
+        // --- Global Variables for Camera ---
+        let mediaRecorder;
+        let recordedChunks = [];
+        let stream;
+
+        const webcamFeed = document.getElementById('webcam-feed');
+        const startRecordBtn = document.getElementById('start-record-btn');
+        const stopRecordBtn = document.getElementById('stop-record-btn');
+        const cameraMessage = document.getElementById('camera-message');
+        const downloadAreaLive = document.getElementById('download-area-live');
+        const downloadLinkLive = document.getElementById('download-link-live');
+
+        // ===================================
+        // 4. LIVE CAMERA & RECORDING HANDLER
+        // ===================================
+
+        async function startCamera() {
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+                webcamFeed.srcObject = stream;
+                cameraMessage.textContent = 'Camera ready. Press START RECORD.';
+                startRecordBtn.disabled = false;
+                
+            } catch (err) {
+                console.error("Camera access failed:", err);
+                cameraMessage.textContent = 'ERROR: Cannot access webcam. Ensure permissions are granted.';
+                startRecordBtn.disabled = true;
+            }
+        }
+
+        function startRecording() {
+            recordedChunks = [];
+            mediaRecorder = new MediaRecorder(stream, { mimeType: 'video/webm; codecs=vp9' });
+
+            mediaRecorder.ondataavailable = (event) => {
+                if (event.data.size > 0) {
+                    recordedChunks.push(event.data);
+                }
+            };
+
+            mediaRecorder.onstop = uploadVideoForProcessing;
+
+            mediaRecorder.start();
+            cameraMessage.textContent = 'RECORDING... (Click STOP to process)';
+            startRecordBtn.disabled = true;
+            stopRecordBtn.disabled = false;
+            downloadAreaLive.style.display = 'none';
+        }
+
+        function stopRecording() {
+            mediaRecorder.stop();
+            // Logic continues in mediaRecorder.onstop
+            stopRecordBtn.disabled = true;
+            cameraMessage.textContent = 'Processing video on server...';
+        }
+
+        async function uploadVideoForProcessing() {
+            const blob = new Blob(recordedChunks, { type: 'video/webm' });
+            const videoFile = new File([blob], `skate_tape_${Date.now()}.webm`, { type: 'video/webm' });
+
+            const formData = new FormData();
+            formData.append('videoFile', videoFile);
+
+            try {
+                const response = await fetch('http://localhost:3000/api/filter-video', {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    cameraMessage.textContent = 'Processing finished! Tape is ready.';
+                    cameraMessage.style.color = 'green';
+                    
+                    downloadLinkLive.href = `http://localhost:3000${data.downloadUrl}`;
+                    downloadAreaLive.style.display = 'block';
+
+                } else {
+                    cameraMessage.textContent = `Processing failed: ${data.message || 'Server error.'}`;
+                    cameraMessage.style.color = 'red';
+                }
+
+            } catch (error) {
+                cameraMessage.textContent = 'CONNECTION ERROR. Server unavailable or failed to process.';
+                cameraMessage.style.color = 'red';
+            } finally {
+                startRecordBtn.disabled = false;
+            }
+        }
+
+
+        // Event Listeners for the Film Page
+        startRecordBtn.addEventListener('click', startRecording);
+        stopRecordBtn.addEventListener('click', stopRecording);
+
+        // Initial check when the Film page is viewed
+        if (document.getElementById('page-film')) {
+            // We start the camera when the page is switched to 'film'
+            const filmNavLink = document.querySelector('[data-page="film"]');
+            
+            // Add logic to start camera ONLY when film page becomes active
+            const observer = new MutationObserver((mutationsList, observer) => {
+                for(const mutation of mutationsList) {
+                    if (mutation.attributeName === 'class') {
+                        const filmPage = document.getElementById('page-film');
+                        if (filmPage && filmPage.classList.contains('active')) {
+                            startCamera();
+                        } else if (stream) {
+                            // Stop camera when navigating away
+                            stream.getTracks().forEach(track => track.stop());
+                        }
+                    }
+                }
+            });
+
+            // Observe the active content box parent for class changes (assuming .content-box is inside a wrapper)
+            // If your content-boxes are all siblings, observe them directly:
+            document.querySelectorAll('.content-box').forEach(box => {
+                observer.observe(box, { attributes: true });
+            });
+        }
+        // ===================================
+        // 1. NAVIGATION & GIF TOGGLE LOGIC
+        // ===================================
+        const switchPage = (targetPageId) => {
+            // Update Navigation Links
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-page') === targetPageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Update Content Boxes
+            contentBoxes.forEach(box => {
+                box.classList.remove('active');
+                if (box.id === `page-${targetPageId}`) {
+                    box.classList.add('active');
+                }
+            });
+
+            // Show or Hide the GIFs (Only show on 'home' page)
+            if (gifContainer) {
+                if (targetPageId === 'home') {
+                    gifContainer.style.display = 'block';
+                } else {
+                    gifContainer.style.display = 'none';
+                }
+            }
+        };
+
+        // Initialize click listeners for navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', (event) => {
+                event.preventDefault();
+                const targetPage = event.target.getAttribute('data-page');
+                switchPage(targetPage);
+            });
+        });
+
+        // Set initial page on load
+        const initialPage = 'home';
+        switchPage(initialPage);
+        
+        // ===================================
+        // 2. BACK-END LOGIN HANDLER
+        // ===================================
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                loginMessage.textContent = 'ATTEMPTING ACCESS...';
+                loginMessage.style.color = 'yellow';
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        loginMessage.textContent = `ACCESS GRANTED! Welcome back, ${data.user.username}.`;
+                        loginMessage.style.color = 'green';
+                        
+                        setTimeout(() => {
+                            // Redirect to the COMMUNITY page after successful login
+                            switchPage('community'); 
+                            loginForm.reset();
+                            loginMessage.textContent = '';
+                        }, 1500);
+
+                    } else {
+                        loginMessage.textContent = `ACCESS DENIED: ${data.message}`;
+                        loginMessage.style.color = 'red';
+                        document.getElementById('password').value = '';
+                    }
+
+                } catch (error) {
+                    console.error('Login Fetch Error:', error);
+                    loginMessage.textContent = 'CONNECTION ERROR. Server unavailable.';
+                    loginMessage.style.color = 'red';
+                }
+            });
+        }
+        
+        // ===================================
+        // 3. REGISTRATION HANDLER
+        // ===================================
+        if (registerForm) {
+            registerForm.addEventListener('submit', async (event) => {
+                event.preventDefault();
+
+                const username = document.getElementById('reg-username').value;
+                const password = document.getElementById('reg-password').value;
+
+                registerMessage.textContent = 'ATTEMPTING REGISTRATION...';
+                registerMessage.style.color = 'yellow';
+
+                try {
+                    const response = await fetch('http://localhost:3000/api/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ username, password }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        registerMessage.textContent = `SUCCESS! ${data.message}`;
+                        registerMessage.style.color = 'green';
+                        
+                        setTimeout(() => {
+                            alert('Account created! Please log in now.');
+                            switchPage('login'); // Redirect to login page after successful registration
+                            registerForm.reset();
+                            registerMessage.textContent = '';
+                        }, 1500);
+
+                    } else {
+                        registerMessage.textContent = `REGISTRATION FAILED: ${data.message}`;
+                        registerMessage.style.color = 'red';
+                    }
+
+                } catch (error) {
+                    console.error('Registration Fetch Error:', error);
+                    registerMessage.textContent = 'CONNECTION ERROR. Server unavailable.';
+                    registerMessage.style.color = 'red';
+                }
+            });
+        }
+    });
+</script>
+</body>
+</html>
